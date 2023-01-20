@@ -27,7 +27,7 @@ The second method regarding the isolation forest that I performed is simply gene
 
 
 
-### Technologies
+## Technologies
 This project is created with:
 - Python 3.9.6
 - TensorFlow 2.9
@@ -38,7 +38,7 @@ This project is created with:
 - Matplotlib 
 
 
-### Notebooks
+## Notebooks
 - ANN_anomaly_detector_pixel_data.ipynb: ANN classifer model using both good and noisy pixel data
 - ANN_anomaly_other_method_new.ipynb: ANN classifer model using both good and nosy model-state data.
 - isolation_forest_anomaly_new: isolation forest model using model-state data. 
