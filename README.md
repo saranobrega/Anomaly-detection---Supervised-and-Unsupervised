@@ -10,13 +10,21 @@ Some anomalies are easier to detect with the state from earlier layers, while so
 
 ## Input data
 ![alt text](data.png)
+
 I use the model state of the MNIST 10-digit classifier model as data for an anomaly detection model. We get the state of the neurons of a specific layer as a CSV file. I also use normal pixel data from MNIST to compare which types of anomalies this standard model is detecting compared to the model-state approach. 
 
-## First method
-The first method regarding the isolation forest that I performed is simply generating outbound and inbound mnist data and passing it as an input (model = IsolationForest(max_samples=10, contamination = 0.005)) and checking the accuracy of the model.
+![alt text](data2.png)
 
-## Second method
-The second method is to pass the model state data as input. This model state data was firstly obtained by passing mnist inbound and outbound data into a CNN and then by doing: (intermediate_layer_model = Model(inputs=model.input, outputs=model.get_layer('dense').output) 
+## Methods
+![alt text](method.png)
+
+### The first method - ANN
+The first method is to pass the model state data as input. This model state data was firstly obtained by passing mnist inbound and outbound data into a ANN and then by doing: (intermediate_layer_model = Model(inputs=model.input, outputs=model.get_layer('dense').output) 
+
+### The second method - Isolation Forest
+The second method regarding the isolation forest that I performed is simply generating outbound and inbound mnist data and passing it as an input (model = IsolationForest(max_samples=10, contamination = 0.005)) and checking the accuracy of the model.
+
+
 
 
 
