@@ -4,13 +4,16 @@ This projected was performed during my machine learning internship at Irdeto (Th
 ## Goal
 ![alt text](goal.png)
 
-There are two different anomaly model types tested here: unsupervised (the Isolation forest), and supervised (ANN).
+The goal is to test and compare 2 different methods of detecting anomalies. The methods only differ in the input data that is given to the models! In this project, two different models were tested: a simple ANN (supervised) and the Isolation Forest model (unsupervised). 
 
-The goal is to compare 2 different methods of detecting anomalies: 
-- Using normal pixel data (MNIST images) 
-- New method: using the model state of the MNIST 10-digit classifier model as data. What does this mean in practice? We first train a ANN with MNIST pixel data with normal data and noisy data (the outliers). Then I access the state of the neurons of this ANN on the first and second layer. I use this data, the state of the neurons when dealing with normal and noisy data, as the input of Isolation Forest and another ANN. 
+**The data**
 
-The goal here is to see which kind of anomalies each method can detect, and also regarding the second method, which layer data is the best to predict outliers. 
+As mentioned, the two methods differ in the input data:
+
+- The usual method: using image (pixel) data (MNIST images) as input data. I will refer to this data here as “normal data”.
+- New method: using the model state of the MNIST 10-digit classifier model as data. What does this mean ? I first trained a ANN with MNIST pixel data both with normal and noisy data (the anomalies). Then, I access the state of the neurons of this ANN on the first and second layer of the model. I use this data,  the state of the neurons of both layers, as the input of Isolation Forest and another ANN. We named this data “model-state data”.
+
+The goal here is to see which kind of anomalies each method can detect, if one method can detect certain kind of anomalies that the other is not able to detect. Besides, regarding the second method, the goal is also to study which layer data is the best to predict anomalies.
 
 
 ## Input data
@@ -73,16 +76,16 @@ Pretty weak method too to predict true outliers.
 - Predicting normal samples
 ![alt text](f3.png)
 
-The first layer predicts 100% of false positives! Not a useful model if every sample is predicted as positive.  On the other hand, the second layer performs very well, having only 1% of FP. 
+The first layer predicts 100% of false positives! Not a useful model. On the other hand, the second layer performs very well, having only 1% of false positives. 
 
 - Predicting noisy samples
 The results from the first layer and second layer are shown in separated images:
 ![alt text](f4.png)
 ![alt text](f5.png)
 
--  The first layer predicts all the noisy samples. Oh well, but it also yielded 100% of FP. So, in general, not a useful approach. 
+- The first layer predicts well all the noisy samples. But it also yielded 100% of false positives. At the end, it is not a good approach.
 
-- However, the second layer yields interesting results. With 100% of True Positives for the second, third and fourth type of noisy types, it sounds promising on detecting certain kinds of outbond data. The only downsidde is predicting 81% of False Negative for the 1st type of noisy samples. But remember, these are the hardest outliers to detect, given that the noise ratio is pretty low :) .
+- The second layer yields interesting results. With 100% of True Positives for the second, third and fourth type of noisy types, it sounds promising on detecting certain kinds of anomalous data. The only downsidde is predicting 81% of False Negative for the 1st type of noisy samples. But remember, these are the hardest outliers to detect, given that the noise ratio is the lowest.
 
 ![alt text](f6.png)
 
